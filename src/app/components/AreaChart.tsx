@@ -60,8 +60,8 @@ const AreaChart = ({ data }: AreaChartProps) => {
       {
         label: "Breastfeeding (minutes)",
         data: breastfeedingData,
-        borderColor: "rgba(255, 99, 132, 1)",
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgba(255, 160, 122, 1)", // Softer red color
+        backgroundColor: "rgba(255, 160, 122, 0.2)",
         fill: false,
         type: "line" as const,
         yAxisID: "y1" as const,

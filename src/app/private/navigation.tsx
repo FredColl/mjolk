@@ -10,17 +10,17 @@ import Link from "next/link";
 export default function NavLinks() {
   const links = [
     {
-      name: "Home",
-      href: "/reportmilk",
+      name: "Report",
+      href: "/private/report",
       icon: HomeIcon,
     },
     {
-      name: "Users",
-      href: "/users",
+      name: "Summary",
+      href: "/private/summary",
       icon: UserGroupIcon,
     },
     {
-      name: "Documents",
+      name: "To be implemented",
       href: "/documents",
       icon: DocumentDuplicateIcon,
     },

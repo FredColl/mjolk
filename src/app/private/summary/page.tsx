@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { fetchSummaryData } from "./actions";
 import { createClient } from "../../../../utils/supabase/client";
+import LineChart from "@/app/components/LineChart";
+import AreaChart from "@/app/components/AreaChart";
 
 const Summary = () => {
   const [summaryData, setSummaryData] = useState<any>(null);
@@ -63,6 +65,9 @@ const Summary = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="flex justify-center">
+        <AreaChart data={summaryData} />
       </div>
     </div>
   );

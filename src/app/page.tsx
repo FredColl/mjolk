@@ -1,4 +1,9 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 export default function Home() {
+  const router = useRouter();
   return (
     <main>
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
@@ -31,7 +36,7 @@ export default function Home() {
           <p className="text-lg text-gray-600 mb-6 text-center">
             Track your breastfeeding and milk supplement with ease
           </p>
-          {/* 
+
           <div className="flex space-x-4">
             <button
               onClick={() => router.push("/login")}
@@ -44,7 +49,8 @@ export default function Home() {
               className="py-2 px-4 bg-green-600 text-white font-semibold rounded-md shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
             >
               Login
-            </button> */}
+            </button>
+          </div>
         </div>
       </div>
     </main>

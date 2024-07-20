@@ -36,7 +36,7 @@ const Summary = () => {
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 text-black">
       <h1 className="text-2xl font-bold mb-4">Historical Summary</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-lg">

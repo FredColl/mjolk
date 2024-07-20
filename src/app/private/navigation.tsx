@@ -1,6 +1,6 @@
 import {
-  UserGroupIcon,
-  HomeIcon,
+  ChartBarSquareIcon,
+  PencilSquareIcon,
   DocumentDuplicateIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -12,12 +12,12 @@ export default function NavLinks() {
     {
       name: "Report",
       href: "/private/report",
-      icon: HomeIcon,
+      icon: PencilSquareIcon,
     },
     {
       name: "Summary",
       href: "/private/summary",
-      icon: UserGroupIcon,
+      icon: ChartBarSquareIcon,
     },
     {
       name: "To be implemented",

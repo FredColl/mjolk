@@ -8,8 +8,7 @@ export default function DashboardLayout({
   return (
     <body className="h-screen">
       {/* Include shared UI here e.g. a header or sidebar */}
-
-      {children}
+      <div className="h-screen">{children}</div>
       <nav>
         <NavLinks />
       </nav>

@@ -21,7 +21,7 @@ export async function login(formData: FormData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/yay");
+  redirect("/private/reportMilk");
 }
 
 export async function signup(formData: FormData) {

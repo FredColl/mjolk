@@ -30,7 +30,8 @@ const AreaChart = ({ data }: AreaChartProps) => {
   if (!data) {
     return <p>No data available</p>;
   }
-  const labels = Object.keys(data);
+
+  const labels = Object.keys(data).sort();
 
   const pumpedData = labels.map((date) => data[date].pumped);
   const supplementData = labels.map((date) => data[date].supplement);

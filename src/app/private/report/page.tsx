@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { createClient } from "../../../../utils/supabase/client";
+import { report } from "process";
 
 const BreastfeedingForm = () => {
   const [supplement, setSupplement] = useState<number | null>(null);
@@ -29,6 +30,7 @@ const BreastfeedingForm = () => {
     let type = "";
     let amount_ml: number | null = null;
     let time_minutes: number | null = null;
+    const now = new Date().toISOString();
 
     if (supplement) {
       type = "supplement";
@@ -47,6 +49,7 @@ const BreastfeedingForm = () => {
         type,
         amount_ml,
         time_minutes,
+        reported_at: now,
       },
     ]);
 

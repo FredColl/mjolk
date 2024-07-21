@@ -40,8 +40,8 @@ const Summary = () => {
   return (
     <div className="p-4 text-black">
       <h1 className="text-2xl font-bold mb-4">Historical Summary</h1>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white shadow-md rounded-lg">
+      <div className="overflow-x-auto pb-16">
+        <table className="min-w-full bg-white shadow-md rounded-lg pb-4">
           <thead>
             <tr>
               <th className="py-2 px-4 bg-gray-200">Date</th>
@@ -65,9 +65,9 @@ const Summary = () => {
             ))}
           </tbody>
         </table>
-      </div>
-      <div className="flex justify-center">
-        <AreaChart data={summaryData} />
+        <div className="flex justify-center">
+          <AreaChart data={summaryData} />
+        </div>
       </div>
     </div>
   );

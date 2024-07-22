@@ -14,7 +14,7 @@ export const fetchSummaryData = async (userId: string) => {
   const summaryData = data.reduce((acc: any, record: any) => {
     const date = new Date(record.reported_at).toISOString().split("T")[0]; // Get the date part only
     if (!acc[date]) {
-      acc[date] = { supplement: 0, pumped: 0, breastfeeding: 0 };
+      acc[date] = { supplement: 0, pumped: 0, breastfeeding: 0, date: date };
     }
     if (record.type === "supplement") {
       acc[date].supplement += record.amount_ml || 0;

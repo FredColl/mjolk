@@ -1,16 +1,30 @@
 "use client";
 import { useEffect, useState } from "react";
-import { fetchSummaryData } from "./actions";
+
+import AreaChart from "../../components/AreaChart";
+import SortableTable from "../../components/SortableTable";
 import { createClient } from "../../../../utils/supabase/client";
-import LineChart from "@/app/components/LineChart";
-import AreaChart from "@/app/components/AreaChart";
+import { fetchSummaryData } from "./actions";
+
+interface TableData {
+  date: string;
+  supplement: number;
+  pumped: number;
+  breastfeeding: number;
+}
 
 const Summary = () => {
-  const [summaryData, setSummaryData] = useState<any>(null);
+  const [summaryData, setSummaryData] = useState<Record<
+    string,
+    TableData
+  > | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
   const supabase = createClient();
+
   useEffect(() => {
+    setIsClient(true);
     const loadData = async () => {
       try {
         const user = await supabase.auth.getUser();
@@ -29,46 +43,23 @@ const Summary = () => {
     loadData();
   }, []);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
+  if (!isClient) {
+    return null;
   }
 
   return (
-    <div className="p-4 text-black">
-      <h1 className="text-2xl font-bold mb-4">Historical Summary</h1>
-      <div className="overflow-x-auto pb-16">
-        <table className="min-w-full bg-white shadow-md rounded-lg pb-4">
-          <thead>
-            <tr>
-              <th className="py-2 px-4 bg-gray-200">Date</th>
-              <th className="py-2 px-4 bg-gray-200">Supplement (ml)</th>
-              <th className="py-2 px-4 bg-gray-200">Pumped (ml)</th>
-              <th className="py-2 px-4 bg-gray-200">Breastfeeding (minutes)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.keys(summaryData).map((date) => (
-              <tr key={date}>
-                <td className="border px-4 py-2">{date}</td>
-                <td className="border px-4 py-2">
-                  {summaryData[date].supplement}
-                </td>
-                <td className="border px-4 py-2">{summaryData[date].pumped}</td>
-                <td className="border px-4 py-2">
-                  {summaryData[date].breastfeeding}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="flex justify-center">
+    <div className="p-4">
+      {/* <h1 className="text-2xl font-bold mb-4">Historical Summary</h1> */}
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+      {!loading && !error && summaryData && (
+        <>
+          <div className="overflow-x-auto mb-6">
+            <SortableTable data={summaryData} />
+          </div>
           <AreaChart data={summaryData} />
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };

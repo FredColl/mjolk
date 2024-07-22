@@ -6,9 +6,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <body className="h-screen">
+    <body className="min-h-screen">
       {/* Include shared UI here e.g. a header or sidebar */}
-      <div className="h-screen">{children}</div>
+      <div className="min-h-screen">{children}</div>
       <nav>
         <NavLinks />
       </nav>

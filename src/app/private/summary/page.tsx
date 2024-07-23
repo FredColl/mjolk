@@ -54,10 +54,12 @@ const Summary = () => {
       {error && <p>Error: {error}</p>}
       {!loading && !error && summaryData && (
         <>
+          <h3 className="text-lg font-bold mb-2">Summary Graph</h3>
+          <AreaChart data={summaryData} />
           <div className="overflow-x-auto mb-6">
+            <h3 className="text-lg font-bold mb-2">Summary Data</h3>
             <SortableTable data={summaryData} />
           </div>
-          <AreaChart data={summaryData} />
         </>
       )}
     </div>

@@ -8,7 +8,7 @@ export default function DashboardLayout({
   return (
     <div className="min-h-screen">
       {/* Include shared UI here e.g. a header or sidebar */}
-      <div className="min-h-screen">{children}</div>
+      <div className="min-h-screen mb--20">{children}</div>
       <nav>
         <NavLinks />
       </nav>

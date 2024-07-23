@@ -18,9 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + "text-black"}>
+      <body className={inter.className + " min-h-screen"}>
         <NextUIProvider>
-          <Providers>{children}</Providers>
+          <main className="">
+            <Providers>{children}</Providers>
+          </main>
         </NextUIProvider>
       </body>
     </html>

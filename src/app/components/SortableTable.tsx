@@ -22,7 +22,7 @@ interface SortableTableProps {
 
 const SortableTable = ({ data }: SortableTableProps) => {
   const [sortField, setSortField] = useState<keyof TableData>("date");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   console.log(data);
   const sortedData = Object.values(data).sort((a, b) => {
     const order = sortOrder === "asc" ? 1 : -1;

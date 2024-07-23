@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { createClient } from "../../../../utils/supabase/client";
-import { report } from "process";
+import { Button, Input } from "@nextui-org/react";
 
 const BreastfeedingForm = () => {
   const [supplement, setSupplement] = useState<number | null>(null);
@@ -64,58 +64,57 @@ const BreastfeedingForm = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">Breastfeeding Tracker</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="flex justify-center items-center min-h-screen mt--16">
+      <form
+        onSubmit={handleSubmit}
+        className="h-full space-y-4 p-6 rounded-lg  w-full max-w-sm mx-4"
+      >
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Amount of Milk Supplement (ml):
           </label>
-          <input
+          <Input
             type="number"
-            value={supplement ?? ""}
+            value={supplement?.toString()}
             onChange={(e) =>
               setSupplement(
                 e.target.value ? parseInt(e.target.value, 10) : null
               )
             }
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            fullWidth
           />
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Amount of Pumped Milk (ml):
           </label>
-          <input
+          <Input
             type="number"
-            value={pumped ?? ""}
+            value={pumped?.toString()}
             onChange={(e) =>
               setPumped(e.target.value ? parseInt(e.target.value, 10) : null)
             }
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            fullWidth
           />
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Time Breastfeeding (minutes):
           </label>
-          <input
+          <Input
             type="number"
-            value={breastfeeding ?? ""}
+            value={breastfeeding?.toString()}
             onChange={(e) =>
               setBreastfeeding(
                 e.target.value ? parseInt(e.target.value, 10) : null
               )
             }
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            fullWidth
           />
         </div>
-        <button
-          type="submit"
-          className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        >
+        <Button type="submit" color="primary" className="w-full">
           Submit
-        </button>
+        </Button>
         {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
         {success && <p className="mt-2 text-sm text-green-600">{success}</p>}
       </form>

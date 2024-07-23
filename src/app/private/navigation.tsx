@@ -23,11 +23,6 @@ export default function NavLinks() {
       href: "/private/summary",
       icon: ChartBarSquareIcon,
     },
-    {
-      name: "To be implemented",
-      href: "/documents",
-      icon: DocumentDuplicateIcon,
-    },
   ];
 
   return (

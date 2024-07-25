@@ -58,7 +58,7 @@ const Summary = () => {
           <AreaChart data={summaryData} />
           <div className="overflow-x-auto mb-6">
             <h3 className="text-lg font-bold mb-2">Summary Data</h3>
-            <SortableTable data={summaryData} />
+            <SortableTable data={Object.values(summaryData)} />
           </div>
         </>
       )}

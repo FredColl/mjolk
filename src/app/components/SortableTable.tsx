@@ -17,19 +17,13 @@ interface TableData {
 }
 
 interface SortableTableProps {
-  data: Record<string, TableData>;
+  data: TableData[];
 }
 
 const SortableTable = ({ data }: SortableTableProps) => {
   const [sortField, setSortField] = useState<keyof TableData>("date");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   console.log(data);
-  const sortedData = Object.values(data).sort((a, b) => {
-    const order = sortOrder === "asc" ? 1 : -1;
-    if (a[sortField] < b[sortField]) return -1 * order;
-    if (a[sortField] > b[sortField]) return 1 * order;
-    return 0;
-  });
 
   const handleSort = (field: keyof TableData) => {
     const newSortOrder =
@@ -65,7 +59,7 @@ const SortableTable = ({ data }: SortableTableProps) => {
         </TableColumn>
       </TableHeader>
       <TableBody>
-        {sortedData.map((item) => (
+        {data.map((item) => (
           <TableRow key={item.date}>
             <TableCell>{item.date}</TableCell>
             <TableCell>{item.supplement}</TableCell>

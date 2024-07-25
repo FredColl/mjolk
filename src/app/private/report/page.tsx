@@ -157,9 +157,7 @@ const BreastfeedingForm = () => {
           {success && <p className="mt-2 text-sm text-green-600">{success}</p>}
         </form>
       </div>
-      <h3 className="text-center text-lg font-semibold mb-4">
-        Today's Records
-      </h3>
+      <h3 className="text-center text-lg font-semibold mb-4">Todays Records</h3>
       <SortableTable data={todaysData ?? []} />
     </div>
   );

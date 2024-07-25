@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { createClient } from "../../../../utils/supabase/client";
 import { Button, Input } from "@nextui-org/react";
 import { fetchDataForToday } from "./actions";
@@ -25,24 +25,29 @@ const BreastfeedingForm = () => {
   const [success, setSuccess] = useState<string | null>(null);
   const supabase = createClient();
 
-  useEffect(() => {
-    const loadData = async () => {
-      const user = await supabase.auth.getUser();
-      try {
-        if (!user.data.user) {
-          throw new Error("User not authenticated");
-        }
-        const data = await fetchDataForToday(user.data.user.id);
-        setTodaysData(data);
-      } catch (error: any) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+  const loadData = useCallback(async () => {
+    setLoading(true);
+    const user = await supabase.auth.getUser();
+    try {
+      if (!user.data.user) {
+        throw new Error("User not authenticated");
       }
-    };
+      const data = await fetchDataForToday(user.data.user.id);
+      // Sort data by date in descending order
+      const sortedData = data.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      );
+      setTodaysData(sortedData);
+    } catch (error: any) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [supabase]);
 
+  useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,6 +99,7 @@ const BreastfeedingForm = () => {
       setSupplement(undefined);
       setPumped(undefined);
       setBreastfeeding(undefined);
+      loadData(); // Refetch data after successful submission
     }
   };
 
